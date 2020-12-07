@@ -1,2 +1,2 @@
 # telegrambot-pengrad
-testando a lib pengrad pra bots do telegram
+Tutorial sobre criação de bot usando java e a biblioteca Pengrad
