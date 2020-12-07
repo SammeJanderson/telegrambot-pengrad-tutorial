@@ -9,19 +9,20 @@ import java.util.List;
 public class EchoBot {
     public static void main(String[] args) {
         //registra o bot
-        TelegramBot sammeTesteBot = new TelegramBot("");
+        TelegramBot bot = new TelegramBot("");
 
 
         //recebe todos os updates
-        sammeTesteBot.setUpdatesListener(new UpdatesListener() {
+        bot.setUpdatesListener(new UpdatesListener() {
 
             //lista de todos os updates
             @Override
             public int process(List<Update> list) {
-                //intera e processa os updates
+                //intera os updates
                 for (Update update : list) {
+
                     //manda a resposta para o usuario
-                    SendResponse sendResponse = sammeTesteBot.execute(new SendMessage(update.message().chat().id(),
+                    SendResponse sendResponse = bot.execute(new SendMessage(update.message().chat().id(),
                             update.message().text()));
 
                     //printa a menssagem no console
