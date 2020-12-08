@@ -18,11 +18,10 @@ import java.util.List;
 
 public class __InlineQuery {
     public static void main(String[] args) {
-        TelegramBot sammeTesteBot = new TelegramBot("");
+        TelegramBot bot = new TelegramBot("");
 
 
-        sammeTesteBot.setUpdatesListener(new UpdatesListener() {
-
+        bot.setUpdatesListener(new UpdatesListener() {
             @Override
             public int process(List<Update> list) {
                 for (Update update : list) {
@@ -31,33 +30,25 @@ public class __InlineQuery {
                     ChosenInlineResult chosenInlineResult = update.chosenInlineResult();
                     CallbackQuery callbackQuery = update.callbackQuery();
 
-                    String message = update.inlineQuery().query();
-
-                    InlineQueryResult inlineQueryResult = new InlineQueryResultArticle("id","Bot do samme",message + " query").thumbUrl("https://avatars0.githubusercontent.com/u/71139904?s=460&u=053e4ab44af4d7e1dfff928a7478f63d63553186&v=4");
-
-                    BaseResponse response = sammeTesteBot.execute(new AnswerInlineQuery(inlineQuery.id(), inlineQueryResult));
-
-                    System.out.println(message);
+                    if (inlineQuery != null) {
+                        String menssagem = new StringBuilder(inlineQuery.query()).reverse().toString();
 
 
+                        InlineQueryResult inlineQueryResult = new InlineQueryResultArticle("id", "Inline Query exemplo", menssagem)
+                                .thumbUrl("https://cdn0.iconfinder.com/data/icons/social-network-24/512/Telegram-512.png");
+
+                        BaseResponse baseResponse = bot.execute(new AnswerInlineQuery((inlineQuery.id()), inlineQueryResult));
 
 
-
-
-
-
+                    }
 
                 }
 
 
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
             }
+
         });
-
-
-
-
-
 
 
     }

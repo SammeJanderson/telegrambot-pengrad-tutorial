@@ -11,21 +11,14 @@ import java.util.List;
 
 //Vamos adiconar um teclado para o nosso bot
 
-public class __InlineKeyboardMarkup{
+public class __ReplyKeyBoardMarkup{
     public static void main(String[] args) {
         TelegramBot bot = new TelegramBot("");
 
         Keyboard keyboard =  new ReplyKeyboardMarkup(
-                new String[]{"nome","sobrenome","o que é Telegram?"}
+                new String[]{"/nome"},
+                new String[]{"/sobrenome"}
         ).resizeKeyboard(true);
-
-
-        InlineKeyboardMarkup keyboard2 = new InlineKeyboardMarkup(
-                new InlineKeyboardButton[]{
-                        new InlineKeyboardButton("Telegram").url("https://telegram.org/"),
-
-                });
-
 
 
 
@@ -40,17 +33,13 @@ public class __InlineKeyboardMarkup{
                     SendResponse sendResponse;
 
                     switch (command) {
-                        case "nome":
+                        case "/nome":
                             baseResponse = bot.execute(new SendChatAction(chatId, ChatAction.typing));
                             sendResponse = bot.execute(new SendMessage(chatId, update.message().from().firstName()));
                             break;
-                        case "sobrenome":
+                        case "/sobrenome":
                             baseResponse = bot.execute(new SendChatAction(chatId, ChatAction.typing));
                             sendResponse = bot.execute(new SendMessage(chatId, update.message().from().lastName()));
-                            break;
-                            case "o que é Telegram?":
-                            baseResponse = bot.execute(new SendChatAction(chatId, ChatAction.typing));
-                            sendResponse = bot.execute(new SendMessage(chatId, "Você pode descobrir mais aqui").replyMarkup(keyboard2));
                             break;
                         default:
                             baseResponse = bot.execute(new SendChatAction(chatId, ChatAction.typing));
